@@ -20,6 +20,7 @@ e.preventDefault();
     students.push(student)
  //   console.log(students)
 addStudentToTable(student)
+promedio();
 });
 
 
@@ -32,6 +33,17 @@ function addStudentToTable(student){
 <td>${student.grade}</td>`
 tableBody.appendChild(row);
 }
+
+function promedio(){
+    if(students.length === 0){
+        promedioAlumnos.textContent = "Promedio de notas: 0.0";
+        return;
+    }
+    const total = students.reduce((suma, prom) => suma + prom.grade, 0);
+    const avg = total / students.length;
+    promedioAlumnos.textContent = `Promedio de notas: ${avg.toFixed(2)}`;
+}
+
 
 
 
