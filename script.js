@@ -21,6 +21,7 @@ e.preventDefault();
  //   console.log(students)
 addStudentToTable(student)
 promedio();
+    this.reset()
 });
 
 
