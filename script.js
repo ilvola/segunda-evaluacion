@@ -31,9 +31,28 @@ function addStudentToTable(student){
     row.innerHTML=
 `<td>${student.name}</td>
 <td>${student.lastname}</td>
-<td>${student.grade}</td>`
+<td>${student.grade}</td>
+<td><button class="delete-btn">Eliminar</button></td>
+`;
+row.querySelector(".delete-btn").addEventListener("click",function(){
+    borrarEstudiante(student,row);
+
+})
 tableBody.appendChild(row);
 }
+
+function borrarEstudiante(student,row){
+    console.log("Borrar")
+    const index=students.indexOf(student);
+    if(index > -1){
+        students.splice(index,1);
+    }
+
+
+    promedio();
+    row.remove();
+}
+
 
 function promedio(){
     if(students.length === 0){
@@ -44,10 +63,5 @@ function promedio(){
     const avg = total / students.length;
     promedioAlumnos.textContent = `Promedio de notas: ${avg.toFixed(2)}`;
 }
-
-
-
-
-
 
 
