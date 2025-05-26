@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-         #promedioAlumnos {
+           #promedioAlumnos {
             width: 100%;
             max-width: 480px;
             margin: 0 auto 1.5rem;
@@ -17,7 +17,7 @@
             text-align: center;
             border-radius: 8px;
         }
-        
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -39,7 +39,7 @@
             user-select: none;
         }
 
-        form#studentform {
+                form#studentform {
             width: 100%;
             max-width: 480px;
             background: white;
@@ -63,9 +63,10 @@
             color: #000000;
             user-select: none;
         }
-        
+
         form#studentform input[type="text"],
-        form#studentform input[type="number"] {
+        form#studentform input[type="number"],
+        form#studentform input[type="date"] {
             padding: 10px 15px;
             border: 2px solid #c3ccff;
             border-radius: 6px;
@@ -73,22 +74,16 @@
             transition: border-color 0.3s ease-in-out;
             outline-offset: 2px;
         }
-        
-                form#studentform input[type="text"]:focus,
-        form#studentform input[type="number"]:focus {
-            border-color: #2750ff;
-            outline: none;
-            box-shadow: 0 0 6px #abc1ffaa;
-        }
 
         form#studentform input[type="text"]:focus,
-        form#studentform input[type="number"]:focus {
+        form#studentform input[type="number"]:focus,
+        form#studentform input[type="date"]:focus {
             border-color: #1f46f1;
             outline: none;
             box-shadow: 0 0 6px #abc1ffaa;
         }
 
-        form#studentform button {
+               form#studentform button {
             text-align: center;
             width: 230px;
             max-width: 300px;
@@ -106,7 +101,7 @@
 
         form#studentform button:hover,
         form#studentform button:focus {
-            background: #2d4af1;
+            background: #1a2ecb;
             outline: none;
         }
 
@@ -119,83 +114,79 @@
             border-radius: 12px;
             overflow: hidden;
             background: white;
+            margin-top: 1.5rem;
         }
 
-        table#studentsTable thead {
-            background: #ececec;
-            color: rgb(255, 255, 255);
+               table#studentsTable thead {
+            background: #414141;
+            color: white;
             font-weight: 700;
-            color: #000000;
-        }       
+        }
 
         table#studentsTable th, table#studentsTable td {
             padding: 12px 15px;
             text-align: left;
         }
 
-        table#studentsTable thead tr th:first-child {
-            border-top-left-radius: 10px;
-        }
-
-        table#studentsTable thead tr th:first-child {
-            border-top-left-radius: 10px;
-        }
-
-        table#studentsTable thead tr th:last-child {
-            border-top-right-radius: 10px;
-        }
-        table#studentsTable tbody tr:last-child td:first-child {
-            border-bottom-left-radius: 10px;
-        }
-        table#studentsTable tbody tr:last-child td:last-child {
-            border-bottom-right-radius: 10px;
-        }
-
-       table#studentsTable tbody tr {
+        table#studentsTable tbody tr {
             background: #f0f4ff;
             box-shadow: 0 2px 5px rgba(4,22,124,0.1);
             transition: background-color 0.2s ease;
         }
+
         table#studentsTable tbody tr:hover {
             background: #d3deff;
         }
 
-        button.action-btn {
-        background: #2d4af1;
+             button.action-btn {
+            background: #2d4af1;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background-color 0.2s ease;
+            user-select: none;
+        }
+
+        button.action-btn:hover,
+        button.action-btn:focus {
+            background: #1a2ecb;
+            outline: none;
+        }
+
+        button.delete-btn {
+        background: linear-gradient(135deg, #dc3545, #a92b37);
         color: white;
         border: none;
         padding: 6px 12px;
-        border-radius: 6px;
+        border-radius: 6px; 
         cursor: pointer;
         font-weight: 600;
-        font-size: 0.9rem;
-        transition: background-color 0.2s ease;
-        user-select: none;
-    }
-    button.action-btn:hover, button.action-btn:focus {
-        background: #1a2ecb;
+        font-size: 0.9rem; 
+        box-shadow: 0 3px 8px rgba(247, 19, 19, 0.6);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        }
+        
+        button.delete-btn:hover,
+        button.delete-btn:focus {
+        background: linear-gradient(135deg, #a92b37, #dc3545);
+        box-shadow: 0 6px 15px rgba(243, 22, 44, 0.9);
         outline: none;
-    }
-    button.delete-btn {
-        background: #dc3545;
-    }
-    button.delete-btn:hover, button.delete-btn:focus{
-        background: #a22834;
-    }
+        }
 
-    button.delete-btn {
-        background: #dc3545;
-    }
-    button.delete-btn:hover, button.delete-btn:focus {
-        background: #a22834;
-    }
-    button.cancel-btn {
-        background: #6c757d;
-    }
-    button.cancel-btn:hover, button.cancel-btn:focus {
-        background: #4c4f52;
-    }
+        button.cancel-btn {
+            background: #6c757d;
+        }
 
+        button.cancel-btn:hover,
+        button.cancel-btn:focus {
+            background: #4c4f52;
+        }
 
         @media (max-width: 600px) {
             body {
@@ -214,9 +205,8 @@
                 vertical-align: middle;
             }
             table#studentsTable thead tr {
-                display: none; /* ocultar encabezado en móvil */
-            }       
-
+                display: none;
+            }
             table#studentsTable tbody tr {
                 display: block;
                 margin-bottom: 1rem;
@@ -225,7 +215,7 @@
                 box-shadow: 0 3px 8px rgba(4,22,124,0.1);
                 padding: 10px;
             }
-            table#studentsTable tbody tr td {
+                        table#studentsTable tbody tr td {
                 display: flex;
                 justify-content: space-between;
                 padding: 6px 10px;
@@ -241,43 +231,46 @@
                 text-transform: capitalize;
             }
         }
-        
+
     </style>
-</head>
 <body>
     <h2>Seguimiento de calificaciones de estudiantes</h2>
-
     <div id="promedioAlumnos">Promedio de notas: 0.0</div>
-
     <form id="studentform">
         <div>
-            <label for="name">nombre:</label>
-            <input type="text" id="name" required>
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" required />
         </div>
         <div>
             <label for="lastname">Apellido:</label>
-            <input type="text" id="lastname" required>
+            <input type="text" id="lastname" required />
         </div>
         <div>
             <label for="grade">Calificación: (1.0 - 7.0)</label>
-            <input type="number" id="grade" step="0.1" min="1" max="7" required>
+            <input type="number" id="grade" step="0.1" min="1" max="7" required />
+        </div>
+        <div>
+            <label for="date">Fecha:</label>
+            <input type="date" id="date" required />
         </div>
         <button type="submit">Agregar calificación</button>
-
-    <form>
-    <table id="studentsTable" border="1" cellspadding="8" cellspacing="0">
+    </form>
+    <table id="studentsTable" border="1" cellpadding="8" cellspacing="0">
         <thead>
             <tr>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Calificación</th>
+                <th>Fecha</th>
                 <th>Acciones</th>
             </tr>
         </thead>
-    <tbody>
-
-    </tbody>
+        <tbody>
+        </tbody>
     </table>
-    <script src="script.js"></script>    
-</body>
-</html>
+    <script src="script.js"></script>   
+    <script>
+
+
+
+ 
