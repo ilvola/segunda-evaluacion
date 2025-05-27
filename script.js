@@ -1,6 +1,9 @@
 const students = [];
 const tableBody = document.querySelector("#studentsTable tbody");
 const promedioAlumnos = document.getElementById("promedioAlumnos");
+const alumnosAprobadosSpan = document.getElementById("alumnosAprobados");
+const alumnosReprobadosSpan = document.getElementById("alumnosReprobados");
+
 function getTodayDateString() {
     const today = new Date();
     const yyyy = today.getFullYear();
@@ -10,8 +13,9 @@ function getTodayDateString() {
 }
 
 const dateInput = document.getElementById("date");
+
 dateInput.value = getTodayDateString();
-document.getElementById("studentform").addEventListener("submit", function(e) {
+document.getElementById("studentform").addEventListener("submit", function(e){
     e.preventDefault();
 
     const name = document.getElementById("name").value.trim();
@@ -66,13 +70,31 @@ function borrarEstudiante(student, row) {
 
 function promedio() {
     if (students.length === 0) {
-        promedioAlumnos.textContent = "Promedio de notas: 0.0";
+        promedioAlumnos.innerHTML = "Promedio de notas: 0.0<br>Alumnos aprobados: 0<br>Alumnos reprobados: 0";
         return;
     }
     const total = students.reduce((suma, prom) => suma + prom.grade, 0);
     const avg = total / students.length;
-    promedioAlumnos.textContent = `Promedio de notas: ${avg.toFixed(2)}`;
+
+  
+    let aprobados = 0;
+    let reprobados = 0;
+    students.forEach(student => {
+        if (student.grade >= 4.0) {
+            aprobados++;
+        } else {
+            reprobados++;
+        }
+    });
+
+    promedioAlumnos.innerHTML = `
+        Promedio de notas: ${avg.toFixed(2)}<br>
+        Alumnos aprobados: ${aprobados}<br>
+        Alumnos reprobados: ${reprobados}
+    `;
 }
+
+
 function EditarEstudiante(student, row) {
     row.innerHTML = `
         <td data-label="Nombre"><input type="text" class="edit-name" value="${student.name}" /></td>
