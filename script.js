@@ -3,6 +3,7 @@ const tableBody = document.querySelector("#studentsTable tbody");
 const promedioAlumnos = document.getElementById("promedioAlumnos");
 const alumnosAprobadosSpan = document.getElementById("alumnosAprobados");
 const alumnosReprobadosSpan = document.getElementById("alumnosReprobados");
+const contadorAlumnosSpan = document.getElementById("contadorAlumnos");
 
 function getTodayDateString() {
     const today = new Date();
@@ -69,6 +70,7 @@ function borrarEstudiante(student, row) {
 }
 
 function promedio() {
+    const totalAlumnos = students.length;
     if (students.length === 0) {
         promedioAlumnos.innerHTML = "Promedio de notas: 0.0<br>Alumnos aprobados: 0<br>Alumnos reprobados: 0";
         return;
@@ -90,6 +92,7 @@ function promedio() {
     promedioAlumnos.innerHTML = `
         Promedio de notas: ${avg.toFixed(2)}<br>
         Alumnos aprobados: ${aprobados}<br>
+        Total de alumnos: ${totalAlumnos}<br>
         Alumnos reprobados: ${reprobados}
     `;
 }
